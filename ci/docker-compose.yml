@@ -1,0 +1,74 @@
+version: '3.7'
+
+services:
+  # Drupal Main image
+  drupal:
+    build: ./services/drupal
+    container_name: drupal
+    volumes:
+      - ./../:/var/www/html
+      - ./services/drupal/config/apache-drupal.conf:/etc/apache2/sites-enabled/000-default.conf:ro
+      - ./services/drupal/config/php-dev.ini:/usr/local/etc/php/conf.d/php.ini:ro
+      - ./services/drupal/config/settings.php:/var/www/html/web/sites/default/settings.php:rw
+      - ./services/drupal/data/files_private:/var/www/html/web/sites/default/files_private:rw
+      - ./services/drupal/data/files:/var/www/html/web/sites/default/files:rw
+    ports:
+      - "80:80"
+    working_dir: /var/www/html/web
+    depends_on:
+      - mariadb
+    environment:
+      TZ: Europe/Brussels
+      VIRTUAL_HOST: m7.local, www.m7.local
+    networks:
+      - m7_net
+
+  # Drupal Tools image
+  tools:
+    build: ./services/tools
+    container_name: tools
+    volumes:
+      - ./../:/app
+      - ./services/drupal/config/settings.php:/app/web/sites/default/settings.php:rw
+    working_dir: /app/web
+    command: >
+      bash -c "cd /app
+      && composer install
+      && tail -f /dev/null"
+    depends_on:
+      - drupal
+      - mariadb
+    networks:
+      - m7_net
+
+  # MariaDB Image
+  mariadb:
+    image: mariadb:10.3.8
+    container_name: mariadb
+    volumes:
+      - ./services/db/data/mariadb:/var/lib/mysql
+      - ./backups:/root/backups
+    environment:
+      MYSQL_DATABASE: drupal
+      MYSQL_ROOT_PASSWORD: drupal
+      TZ: Europe/Brussels
+    restart: unless-stopped
+    networks:
+      - m7_net
+
+  # Adminer image
+  adminer:
+    image: adminer
+    ports:
+      - 8081:8080
+    networks:
+      - m7_net
+
+networks:
+  m7_net:
+    name: m7_net
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.10.40.0/24

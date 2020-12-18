@@ -1,0 +1,9 @@
+name = Views Galery Album Captions
+description = Add data from field captions to title/alt in image
+package = Custom
+dependencies[] = views
+
+version = "7.x-1.0"
+core = "7.x"
+
+datestamp = "1395334015"

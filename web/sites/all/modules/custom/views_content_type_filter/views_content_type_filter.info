@@ -1,0 +1,11 @@
+name = Views Content Type filter
+description = Content type role dependent exposed filter.
+package = Custom
+dependencies[] = views
+
+version = "7.x-1.0"
+core = "7.x"
+
+files[] = views_content_type_filter_handler.inc
+
+datestamp = "1366175582"

@@ -1,0 +1,12 @@
+name = Views Test
+description = Test
+package = Custom
+dependencies[] = views
+
+version = "7.x-1.0"
+core = "7.x"
+
+files[] = viewstestfield_handler_testfield.inc
+files[] = viewstestfield_filter_handler.inc
+
+datestamp = "1366175582"

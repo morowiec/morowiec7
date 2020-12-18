@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * Implements hook_views_api().
+ */
+function views_galery_captions_views_api() {
+  return array(
+    'api' => 3.0,
+  );
+}
+
+/**
+* Implements hook_views_pre_render().
+*/
+function views_galery_captions_views_pre_render(&$view) {
+	if ($view->name == 'gallery_album_display') {
+		foreach($view->result as $r){
+			if (!empty($r->field_field_caption[0]['rendered']['#markup'])) {
+				$r->field_field_image[0]['rendered']['#item']['alt'] = $r->field_field_caption[0]['rendered']['#markup'];		
+				$r->field_field_image[0]['rendered']['#item']['title'] = $r->field_field_caption[0]['rendered']['#markup'];		
+			} elseif(!empty($r->field_field_gallery_album[0]['rendered']['#markup'])) {
+				$r->field_field_image[0]['rendered']['#item']['title'] = $r->field_field_gallery_album[0]['rendered']['#markup'];		
+			}
+			//dpm($r);
+		}
+	}
+}
