@@ -1,6 +1,6 @@
 {
     "name": "drupal-composer/drupal-project",
-    "description": "Project template for Drupal 9 projects with Composer",
+    "description": "Project template for Drupal 7 projects with composer",
     "type": "project",
     "license": "GPL-2.0-or-later",
     "authors": [
@@ -12,37 +12,39 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "https://packages.drupal.org/8"
+            "url": "https://packages.drupal.org/7"
         }
     ],
     "require": {
-        "php": ">=7.3",
-        "composer/installers": "^1.9",
-        "cweagans/composer-patches": "^1.7",
-        "drupal/core-composer-scaffold": "^9.0",
-        "drupal/core-recommended": "^9.0",
-        "drush/drush": "^10.3",
-        "vlucas/phpdotenv": "^5.1",
-        "webflo/drupal-finder": "^1.2"
-    },
-    "require-dev": {
-        "drupal/core-dev": "^9.0",
-        "zaporylie/composer-drupal-optimizations": "^1.2"
+        "php": ">=5.3.3",
+        "ext-curl": "*",
+        "ext-gd": "*",
+        "ext-json": "*",
+        "ext-openssl": "*",
+        "ext-pdo": "*",
+        "ext-xml": "*",
+        "composer/installers": "^1.2",
+        "composer/semver": "^1.4",
+        "cweagans/composer-patches": "^1.6.5",
+        "drupal-composer/preserve-paths": "^0.1",
+        "drupal/composer_autoloader": "^1.0",
+        "drupal/drupal": "^7.62",
+        "drush/drush": "^8.0",
+        "symfony/filesystem": "~2.7|^3",
+        "webflo/drupal-finder": "^1.0.0"
     },
     "conflict": {
-        "drupal/drupal": "*"
+        "drupal/core": "8.*"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
-        "discard-changes": true,
         "sort-packages": true
     },
     "autoload": {
         "classmap": [
             "scripts/composer/ScriptHandler.php"
-        ],
-        "files": ["load.environment.php"]
+        ]
     },
     "scripts": {
         "pre-install-cmd": [
@@ -56,27 +58,27 @@
         ],
         "post-update-cmd": [
             "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "post-create-project-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::removeInternalFiles"
         ]
     },
     "extra": {
-        "drupal-scaffold": {
-            "locations": {
-                "web-root": "web/"
-            }
-        },
         "installer-paths": {
-            "web/core": ["type:drupal-core"],
-            "web/libraries/{$name}": ["type:drupal-library"],
-            "web/modules/contrib/{$name}": ["type:drupal-module"],
-            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
-            "web/themes/contrib/{$name}": ["type:drupal-theme"],
-            "drush/Commands/contrib/{$name}": ["type:drupal-drush"]
-        },
-        "composer-exit-on-patch-failure": true,
-        "patchLevel": {
-            "drupal/core": "-p2"
+            "web/": ["type:drupal-core"],
+            "web/profiles/{$name}/": ["type:drupal-profile"],
+            "web/sites/all/drush/{$name}/": ["type:drupal-drush"],
+            "web/sites/all/libraries/{$name}/": ["type:drupal-library"],
+            "web/sites/all/modules/contrib/{$name}/": ["type:drupal-module"],
+            "web/sites/all/themes/contrib/{$name}/": ["type:drupal-theme"]
         },
         "patches": {
-        }
+            "cweagans/composer-patches": {
+                "Call the preserve paths hooks" : "https://github.com/SebCorbin/composer-patches/commit/1cb9bacba51f8bba0c5f3f322c3bb61e4ceae974.patch"
+            }
+        },
+        "preserve-paths": [
+            "web/sites"
+        ]
     }
 }
