@@ -43,3 +43,6 @@
 # Ignore docker DB
 /ci/services/db/
 /ci/services/drupal/data/
+
+# Ignore tmp folder
+/web/tmp
