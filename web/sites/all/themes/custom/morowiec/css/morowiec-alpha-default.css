@@ -1,0 +1,44 @@
+/* This file will hold styles for all layouts using the alpha grid (i.e. not the mobile layout). */
+
+ 
+#region-branding {
+}
+
+h1.site-name, h2.site-name{
+    font-size: 32px;
+}
+
+#region-menu {
+}
+
+#region-sidebar-second .block-views-random-photo-block {
+	display: block;
+}		
+.view-gallery-album-display .views-field-field-image img{
+	width:128px;
+	height:96px;
+}
+
+.view-gallery-album-display .views-field-field-image{
+	margin:3px;
+}
+
+.view-reorder-items-grid .views-field-field-image{
+	border:none;
+	padding:0px;
+}
+
+.draggableviews-processed li.views-row{
+	width:auto;
+	margin:2px;
+	padding:4px;
+}
+
+.flowplayer{
+    height: 330px;
+    width: 440px;
+}
+.youtube {
+    height: 300px;
+    width: 400px;
+}

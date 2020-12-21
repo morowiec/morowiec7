@@ -1,0 +1,52 @@
+/* This file will hold styles that are loaded using the same media query as the narrow grid. */
+
+/* If you are using the default media queries provided by Omega, these styles will also
+ *  apply to the normal and widescreen layouts. You may override these styles in the normal 
+ *  and widescreen CSS files as appropriate. */
+ 
+#region-branding {
+}
+
+
+#region-menu {
+}
+
+#region-sidebar-second .view-random-photo img {
+	width:140px;
+	height:105px;
+}
+
+#region-content .node .field-name-field-image img {
+	width:200px;
+	height:150px;
+}
+
+
+#region-content .view .field-name-field-image img {
+	width:180px;
+	height:135px;
+}
+
+.view-gallery-album-display .view-content{
+	padding-left:2px;
+}
+.view-gallery-album-display .views-field-field-image{
+	margin:3px;
+}
+
+.view-gallery-album-display .views-field-field-image img{
+	width:96px;
+	height:72px;
+}
+
+.flowplayer{
+    height: 330px;
+    width: 440px;
+}
+
+
+.youtube {
+    height: 255px;
+    width: 340px;
+}
+

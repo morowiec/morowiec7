@@ -1,0 +1,68 @@
+/* This file will hold styles that are loaded using the same media query as the wide grid. */
+
+#region-branding {
+}
+
+
+#zone-menu {
+	border: none;
+	background:none;
+}
+
+
+
+#zone-menu-wrapper a{
+	font-size:22px;
+}
+
+#region-sidebar-second .view-random-photo img {
+	width:260px;
+	height:195px;
+}
+
+#region-content .node .field-name-field-image img {
+	width:260px;
+	height:195px;
+}
+
+#region-content .view .field-name-field-image img {
+	width:200px;
+	height:150px;
+}
+
+#region-content .node .field-name-field-images img {
+	border: 1px solid #999999;
+	padding:2px;
+	background-color:#FFFFFF;
+}
+
+
+.view-gallery-album-display .view-content{
+	padding-left:2px !important;
+}
+
+.view-gallery-album-display .views-field-field-image{
+	margin:3px;
+}
+
+.flowplayer{
+    height: 450px;
+    width: 600px;
+	margin: 5px 90px 5px 90px;
+}
+
+.youtube {
+    height: 360px;
+    width: 480px;
+}
+
+.field-name-field-tags .field-items {
+	width:525px;
+}
+
+.view-content .mapBox,
+.field-name-field-kml .mapBox,
+.field-type-google-map-field .google_map_field_display,
+.field-name-field-geolocation .geolocation-map {
+	width:579px !important;
+}
